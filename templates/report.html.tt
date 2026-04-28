@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 32px;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        h1, h2 {
+            margin-bottom: 12px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #333;
+            color: #fff;
+        }
+
+        .error {
+            color: #b00020;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Отчёт по логам</h1>
+
+<div class="card">
+    <h2>События по уровням</h2>
+    <table>
+        <tr><th>Уровень</th><th>Количество</th></tr>
+        [% FOREACH row IN by_level %]
+        <tr><td>[% row.level | html %]</td><td>[% row.total | html %]</td></tr>
+        [% END %]
+    </table>
+</div>
+
+<div class="card">
+    <h2>Топ пользователей по активности</h2>
+    <table>
+        <tr><th>User ID</th><th>Количество событий</th></tr>
+        [% FOREACH row IN top_users %]
+        <tr><td>[% row.user_id | html %]</td><td>[% row.total | html %]</td></tr>
+        [% END %]
+    </table>
+</div>
+
+<div class="card">
+    <h2>Ошибки по дням</h2>
+    <table>
+        <tr><th>Дата</th><th>Количество ошибок</th></tr>
+        [% FOREACH row IN errors_by_day %]
+        <tr><td>[% row.event_date | html %]</td><td class="error">[% row.total | html %]</td></tr>
+        [% END %]
+    </table>
+</div>
+
+<div class="card">
+    <h2>Последние ошибки</h2>
+    <table>
+        <tr>
+            <th>Дата</th><th>Время</th><th>User ID</th><th>Action</th><th>Status</th><th>Message</th>
+        </tr>
+        [% FOREACH row IN latest_errors %]
+        <tr>
+            <td>[% row.event_date | html %]</td>
+            <td>[% row.event_time | html %]</td>
+            <td>[% row.user_id | html %]</td>
+            <td>[% row.action | html %]</td>
+            <td>[% row.status | html %]</td>
+            <td>[% row.message | html %]</td>
+        </tr>
+        [% END %]
+    </table>
+</div>
+
+<div class="card">
+    <h2>Последние ошибки парсинга</h2>
+    <table>
+        <tr><th>Дата загрузки</th><th>Ошибка</th><th>Строка</th></tr>
+        [% FOREACH row IN parse_errors %]
+        <tr>
+            <td>[% row.created_at | html %]</td>
+            <td>[% row.error_message | html %]</td>
+            <td>[% row.raw_line | html %]</td>
+        </tr>
+        [% END %]
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+2026-04-28 12:30:15 INFO user_id=15 action=login status=success
+2026-04-28 12:31:02 ERROR user_id=18 action=upload status=failed message="file too large"
+2026-04-28 12:32:45 INFO user_id=15 action=view_report status=success
+2026-04-28 12:34:10 WARN user_id=22 action=login status=failed message="wrong password"
+2026-04-28 12:36:51 ERROR user_id=18 action=payment status=failed message="database timeout"
+2026-04-29 09:11:03 INFO user_id=22 action=login status=success
+2026-04-29 09:15:27 ERROR user_id=31 action=export status=failed message="permission denied"
+2026-04-29 09:20:41 INFO user_id=15 action=logout status=success
+bad broken line without valid format
